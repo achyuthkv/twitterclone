@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import home, signup, signin, signout
+from django.conf.urls.static import static
+from django.conf import settings
+
+from core.views import home, signup, signin, signout, editprofile
 from tweetdeck.views import tweeter, tweetsof
 
 urlpatterns = [
@@ -25,6 +28,7 @@ urlpatterns = [
     url(r'^logout/$', signout),
     url(r'^signup/$', signup),
     url(r'^home/$', tweeter),
-    url(r'^tweetsof/(?P<user_id>[0-9]+)', tweetsof)
+    url(r'^tweetsof/(?P<user_id>[0-9]+)', tweetsof),
+    url(r'^edit/$', editprofile),
 
 ]

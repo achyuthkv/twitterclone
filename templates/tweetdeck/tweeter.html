@@ -2,7 +2,11 @@
 {% block body %}
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-3">
+			
+		</div>
+		<div class="col-md-6">
+			<h2>Tweet here..</h2>
 			<form action="/home/" method="POST">
 				{% csrf_token %}
 				<div class="form-group">
@@ -15,11 +19,11 @@
 
 			{% for tweet in tweets %}
 				<h4>{{tweet.text}}</h4>
-				<p>{{tweet.user}}</p>
+				<a href="/tweetsof/{{tweet.user.id}}/">{{tweet.user}}</a>
 				<hr>
 			{% endfor %}
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			
 		</div>
 	</div>

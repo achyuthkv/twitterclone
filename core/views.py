@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from core.models import Profile
 
 
 
@@ -49,3 +50,26 @@ def signin(request):
 def signout(request):
 	logout(request)
 	return redirect("/")
+
+def editprofile(request):
+	id = request.user.id
+	user = User.objects.get(pk=id)
+	profile = Profile.objects.get(user=user)
+	if not user.is_authenticated:
+		return redirect("/login/")
+
+	if request.method == "POST":
+		fname = request.POST.get('fname', "First Name")
+		lname = request.POST.get('lname', "Last name")
+		about = request.POST.get('about', "This is about")
+		user.first_name = fname
+		user.last_name = lname
+		profile.about = about
+		user.save()
+		profile.save()
+
+		return redirect("/edit/")
+
+	profile = Profile.objects.get(user=request.user)
+	print(profile.user, profile.about, profile.dob)
+	return render(request, "core/editprofile.html", {"profile":profile})

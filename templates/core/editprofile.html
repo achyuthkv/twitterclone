@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>{{user.first_name}} {{user.last_name}}</h1>
+				<p>{{profile.about}}</p>
+				<form action="/edit/" method="POST">
+					{% csrf_token %}
+					<div class="form-group">
+						<label>First Name</label>
+						<input class="form-control" type="text" name="fname" value="{{user.first_name}}">
+					</div>
+					
+					<div class="form-group">
+						
+						<label>Last Name</label>
+						<input class="form-control" type="text" name="lname" value="{{user.last_name}}">
+					</div>
+					<div class="form-group">
+						<label>About</label>
+						<input type="text" name="about" class="form-control" value="{{profile.about}}">
+					</div>
+					<button class="btn btn-md btn-success" type="submit">Save</button>
+				</form>
+			</div>
+			<div class="col-md-6">
+				
+			</div>
+		</div>
+	</div>
+{% endblock %}

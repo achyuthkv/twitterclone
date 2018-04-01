@@ -3,8 +3,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<h1>{{profile.first_name}} {{profile.last_name}}</h1>
-
+			<h1>{{user.first_name}} {{user.last_name}}</h1>
+			<p>{{profile.dob}}</p>
+			<p>{{profile.about}}</p>
+			<hr>
+			<br>
 			{% for tweet in tweets %}
 				<h4>{{tweet.text}}</h4>
 				<p>{{tweet.user}}</p>

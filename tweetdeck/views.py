@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from tweetdeck.models import Tweet
+from core.models import Profile
 
 
 def tweeter(request):
@@ -19,5 +20,6 @@ def tweeter(request):
 
 def tweetsof(request, user_id):
 	user = User.objects.get(pk=user_id)
+	profile = Profile.objects.get(user=user)
 	tweets = Tweet.objects.filter(user=user)
-	return render(request, "tweetdeck/tweetsof.html", {"tweets": tweets, "profile":user})
+	return render(request, "tweetdeck/tweetsof.html", {"tweets": tweets, "profile":profile, "user":user})
