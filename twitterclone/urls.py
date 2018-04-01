@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from core.views import home, signup, signin
+from core.views import home, signup, signin, signout
+from tweetdeck.views import tweeter, tweetsof
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home),
     url(r'^login/$', signin),
+    url(r'^logout/$', signout),
     url(r'^signup/$', signup),
+    url(r'^home/$', tweeter),
+    url(r'^tweetsof/(?P<user_id>[0-9]+)', tweetsof)
 
 ]

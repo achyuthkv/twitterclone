@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<form action="/home/" method="POST">
+				{% csrf_token %}
+				<div class="form-group">
+					
+					<textarea class="form-control" name="tweet" row=3 placeholder="What are you thinking today?"></textarea>
+				</div>
+					<button type="submit" class="btn btn-md btn-primary">Tweet</button>
+			</form>
+			<hr>
+
+			{% for tweet in tweets %}
+				<h4>{{tweet.text}}</h4>
+				<p>{{tweet.user}}</p>
+				<hr>
+			{% endfor %}
+		</div>
+		<div class="col-md-4">
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
